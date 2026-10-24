@@ -1,9 +1,9 @@
 from django.shortcuts import redirect
 from django.contrib.auth import login 
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
-from .forms import ContactForm
+from .forms import ContactForm, PostForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -42,3 +42,16 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'myapp/signup.html', {'form': form})
+
+@login_required(login_url='/login/')
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('/posts/')
+    else:
+        form = PostForm()
+    return render(request, 'myapp/create_post.html', {'form': form})
