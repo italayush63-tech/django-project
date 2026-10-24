@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-b6j0nny11$if7$4bn56s#(pl6e!1l#+ilnn=!an6gvt90=0m_p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['techital63.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -128,3 +128,4 @@ MAILERS = {
 }
 LOGIN_REDIRECT_URL = '/'
 LOTGOUT_REDIRECT_URL = '/'
+STATICFILES_ROOT = BASE_DIR / 'staticfiles'
