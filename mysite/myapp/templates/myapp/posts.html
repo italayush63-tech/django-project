@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+    <h1>My Posts</h1>
+
+{% for post in posts %}
+   <h2><a href="/posts/{{ post.id }}/">{{ post.title }}</a></h2>
+   <p>{{ post.content }}</p>
+   <small>{{ post.created }}</small>    
+   <hr>
+{% empty %}
+   <p>No posts yet.</p>
+{% endfor %}
+{% endblock %}      

@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My django site</title>
+    <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/about/">About</a> |
+        <a href="/contact/">Contact</a>
+        <a href="/posts/">Posts</a>
+        {% if user.is_authenticated %}
+            <span style="color:white;">Hi, {{ user.username }}</span>
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="/login/">Login</a> |
+            <a href="/signup/">Sign up</a>
+        {% endif %}
+             
+    </nav> 
+     
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>    
+</html>

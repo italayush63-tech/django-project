@@ -1,0 +1,9 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Hello, {{ name }}!</h1>
+<p>This is my first Django page.</p>
+<img src="{% static 'myapp/photo.jpg' %}" width="500">
+<img src="{% static 'myapp/photo2.jpg' %}" width="500">
+{% endblock %}
